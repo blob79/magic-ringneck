@@ -1,0 +1,51 @@
+[project]
+name = "magic_ringneck"
+version = "1"
+description = "Ringneck is a Unix command line tool that caches the output of commands it runs."
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "supervisor == 4.2.5",
+    "xdg-base-dirs == 6.0",
+    "retry2 == 0.9.5",
+]
+[project.urls]
+Homepage = "https://github.com/blob79/magic-ringneck"
+
+[project.optional-dependencies]
+test = [
+    "pytest == 8.1",
+    "pytest-shell-utilities == 1.9",
+    "hypothesis == 6.99",
+]
+dev = [
+    "pylint == 3.1",
+    "black == 24.3",
+    "mypy == 1.9",
+    "types-retry == 0.9",
+]
+[build-system]
+requires = ["flit_core>=3.4"]
+build-backend = "flit_core.buildapi"
+
+[project.scripts]
+parakeet = "magic_ringneck.parakeet:main"
+nestbox = "magic_ringneck.nestbox:main"
+ringneck = "magic_ringneck.ringneck:main"
+
+[tool.pylint.'MESSAGES CONTROL']
+max-line-length = 120
+disable = """
+    C0114,
+    C0115,
+    C0116,
+    R1735,
+"""
+
+[tool.black]
+line-length = 120
